@@ -18,5 +18,8 @@
 | `Bath` | `water()`, `display()` |
 
 ## Group
-- Name (jamromney@github)
-- Name (EmmaWill815@github)
+- Jake (jamromney@github): README.md
+- Name (EmmaWill815@github): UML Diagram
+- Name (userame@github): UI Mockup
+- Name (username@github): Project Timeline
+- Name (username@github): 
