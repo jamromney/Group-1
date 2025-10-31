@@ -13,6 +13,9 @@
 | `Main/Digipet` | `setup()`, `draw()`, 'mousePress()', 'moodChange()' |
 | `Toy` | 'mousePressed()', 'display()' |
 | `Pet` | `move()`, `display()`, `eat()`, `waste()`, `bath()` |
+| `Food` | `beEaten()`, `mousePressed()`, `display` |
+| `Waste` | `mousePressed()`, `display()` |
+| `Bath` | `water()`, `display()` |
 
 ## Group
 - Name (jamromney@github)
