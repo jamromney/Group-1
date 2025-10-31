@@ -10,8 +10,9 @@
 ## Core Classes
 | Class | Role |
 |-------|------|
-| `Main` | `setup()`, `draw()` |
-| `...` | ... |
+| `Main/Digipet` | `setup()`, `draw()`, 'mousePress()', 'moodChange()' |
+| `Toy` | 'mousePressed()', 'display()' |
+| 'Pet' | 'move()', 'display()', 'eat()', 'waste()', 'bath()' |
 
 ## Group
 - Name (@github)
