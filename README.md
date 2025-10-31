@@ -1,6 +1,6 @@
 # Digipets
 
-**Classification:** [Your Choice]
+**Simple Game:** [Your Choice]
 
 **Pitch:** [One compelling sentence]
 
@@ -15,5 +15,5 @@
 | 'Pet' | 'move()', 'display()', 'eat()', 'waste()', 'bath()' |
 
 ## Group
-- Name (@github)
-- Name (@github)
+- Name (jamromney@github)
+- Name (EmmaWill815@github)
