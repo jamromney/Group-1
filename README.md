@@ -19,7 +19,7 @@
 
 ## Group
 - Jake (jamromney@github): README.md
-- Name (EmmaWill815@github): UML Diagram
-- Name (userame@github): UI Mockup
-- Name (username@github): Project Timeline
-- Name (username@github): 
+- Emma (EmmaWill815@github): UML Diagram
+- Gabriel (425656gabriel@github): 
+- Eliana (9654277-svg@github): 
+- Claire (SkylineHighStudend@github): UI Mockup
