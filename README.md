@@ -1,8 +1,8 @@
 # Digipets
 
-**Simple Game:** [Your Choice]
+**Classification:** Simple Game
 
-**Pitch:** [One compelling sentence]
+**Pitch:** 
 
 ![Class Diagram](https://github.com/jamromney/Group-1/blob/main/Class%20Diagram/Digipets.drawio.pdf)
 ![UI Mockup](mockup.png)
