@@ -4,10 +4,10 @@ class Waste {
   int x, y, h, w;
   color c1, c2;
   boolean over;
-  int gx = 230;
-  int gy = 60;
+  int gx = 250;
+  int gy = 30;
   boolean display = true;
-  PImage can;
+  PImage can, waste;
   
   
 
@@ -23,6 +23,8 @@ class Waste {
     
     can = loadImage("garbageCan.png");
     can.resize(80,80);
+    waste = loadImage("waste.png");
+    waste.resize(40,40);
   }
 
   // Member Methods
@@ -42,8 +44,8 @@ class Waste {
     }
     // Display Waste
     if (display == true) {
-      rectMode(CENTER);
-      rect(x, y, w, h);
+      imageMode(CENTER);
+      image(waste, x, y);
     }
   }
 
