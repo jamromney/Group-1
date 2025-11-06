@@ -4,7 +4,7 @@
 
 **Pitch:** Take care and look after digital pets.
 
-![Class Diagram](https://github.com/jamromney/Group-1/blob/main/Class%20Diagram/Digipets.drawio.pdf)
+![Class Diagram](https://github.com/jamromney/Group-1/blob/main/Class%20Diagram/digipets-uml.png)
 ![UI Mockup](https://github.com/jamromney/Group-1/blob/main/Class%20Diagram/GUImockup.png)
 
 ## Core Classes
