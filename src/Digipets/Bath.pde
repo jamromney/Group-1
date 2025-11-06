@@ -2,6 +2,7 @@ class Bath {
   int x, y, w, h;
   color c1, c2, c3;
   boolean over;
+  PImage bath;
 
 
   Bath(int x, int y, int w, int h, color c1, color c2, color c3) {
@@ -12,11 +13,17 @@ class Bath {
     this.c1 = c1;
     this.c2 = c2;
     this.c3 = c3;
+    
+    bath = loadImage("bath.png");
+    bath.resize(80,80);
   }
 
-  void display() {}
-  
-  void water() {}
+  void display() {
+    image(bath, 230, 150);
+  }
+
+  void water() {
+  }
 
   boolean hover(int tempX, int tempY) {
     //false;
