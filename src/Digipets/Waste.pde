@@ -1,3 +1,4 @@
+// Jake Romney
 class Waste {
   // Member Var
   int x, y, h, w;
