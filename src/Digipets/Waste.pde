@@ -3,9 +3,12 @@ class Waste {
   int x, y, h, w;
   color c1, c2;
   boolean over;
-  int gx = 200;
-  int gy = 10;
+  int gx = 230;
+  int gy = 60;
   boolean display = true;
+  PImage can;
+  
+  
 
   // constructor
   Waste(int x, int y, int w, int h, color c1, color c2) {
@@ -16,26 +19,29 @@ class Waste {
     this.c1 = c1;
     this.c2 = c2;
     over = false;
+    
+    can = loadImage("garbageCan.png");
+    can.resize(80,80);
   }
 
   // Member Methods
   void display() {
     // Trash Can
-    fill(0);
-    rectMode(CORNER);
-    rect(gx, gy, 80, 80);
-
+    imageMode(CENTER);
+    image(can, gx, gy);
     // Waste
     if (over == true) {
       fill(c1);
     } else {
       fill(c2);
     }
-    rectMode(CENTER);
+    // Delete Waste
     if (x + w/2 > gx && x - w/2 < gx + 80 && y + h/2 > gy && y - h/2 < gy + 80) {
       display = false;
     }
+    // Display Waste
     if (display == true) {
+      rectMode(CENTER);
       rect(x, y, w, h);
     }
   }
