@@ -17,6 +17,8 @@
 | `Waste` | `mousePressed()`, `display()` |
 | `Bath` | `water()`, `display()` |
 
+## Project Timeline
+
 ## Group
 - Jake (jamromney@github): README.md
 - Emma (EmmaWill815@github): UML Diagram
