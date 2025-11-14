@@ -63,6 +63,7 @@ void draw() {
 void drawStart() {
   background(100, 100, 255);
   btnStart.display();
+  fill(230);
   textSize(80);
   textFont(helv);
   text("Digipets", 310,180);
