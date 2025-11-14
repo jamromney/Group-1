@@ -71,6 +71,7 @@ void draw() {
   }
   for (int i=0; i<toy.length; i++) {
     toy[i].display();
+    toy[i].bounce();
   }
   pet1.display();
 }
