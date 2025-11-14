@@ -15,8 +15,8 @@ class Pet {
     this.c1 = c1;
     this.c2 = c2;
     this.c3 = c3;
-    p1 = loadImage("Pets.png");
-    p1.resize(200, 200);
+    p1 = loadImage("Cat (2).png");
+    p1.resize(266, 170);
   }
   void display() {
     image(p1, x, y);
