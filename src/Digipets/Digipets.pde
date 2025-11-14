@@ -1,20 +1,29 @@
-Waste[] waste = new Waste[2];
+// Classes
+ArrayList<Waste> waste = new ArrayList<Waste>();
 Bath[] bath = new Bath[1];
 Toy[] toy = new Toy[1];
 Pet pet1;
 
+// Timer Settings
+int interval = 10000;//120000;  // 2 minutes in ms
+int lastTime = 0;
+
+// Trash Can
+PImage can;
+
 void setup() {
   size(600, 600);
   background(255);
-  // Waste
-  waste[0] = new Waste(20, 100, 40, 40, #81580D, #5F410A);
-  waste[1] = new Waste(100, 100, 40, 40, #81580D, #5F410A);
+  // Grabage Can
+  can = loadImage("garbageCan.png");
+  can.resize(80, 80);
+  println("can:", can);
 
   // Bath
   bath[0] = new Bath(150, 30, 15, 15, #29A7D3, #29A7D3, #29A7D3);
 
   // Toy
-  toy[0] = new Toy(50, 30, 50, 50, #29A7D3, #0A4B50);
+  toy[0] = new Toy(50, 30);
   // Food
 
   // Pet
@@ -34,18 +43,34 @@ void draw() {
   fill(#BBBEBF);
   rectMode(CORNER);
   rect(0, 0, 600, 60);
-  // waste class
-  for (int i=0; i<waste.length; i++) {
-    waste[i].display();
-    waste[i].hover(mouseX, mouseY);
+
+  // Timer
+  if (millis() - lastTime >= interval) {
+    println("Event triggered!");
+    waste.add(new Waste(50, 100));
+    lastTime = millis(); // reset timer
   }
+
+  // waste class
+  for (int i = 0; i < waste.size(); i++) {
+    Waste w = waste.get(i);
+    if(w.hover(mouseX, mouseY)) {
+      break;
+    }
+  }
+  for (int i = 0; i < waste.size(); i++) {
+    Waste w = waste.get(i);
+    w.display();
+  }
+  // Garbage Can
+  imageMode(CENTER);
+  image(can, 250, 30);
   // bath class
   for (int i=0; i<bath.length; i++) {
     bath[i].display();
   }
   for (int i=0; i<toy.length; i++) {
     toy[i].display();
-    toy[i].hover();
   }
   pet1.display();
 }
