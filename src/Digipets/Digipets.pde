@@ -16,9 +16,14 @@ int lastTime = 0;
 // Trash Can
 PImage can;
 
+// Font
+PFont helv;
+
+
 void setup() {
   size(600, 600);
   background(255);
+  helv = createFont("Helvetica-Bold", 90);
 
   // Grabage Can
   can = loadImage("garbageCan.png");
@@ -39,7 +44,7 @@ void setup() {
   pet1.display();
 
   // Buttons
-  btnStart = new Button("Start Game!", 280, 280, 160, 50);
+  btnStart = new Button("Play!", 230, 280, 160, 50);
   btnEnd = new Button("Pause", 40, 540, 160, 50);
 }
 
@@ -58,6 +63,9 @@ void draw() {
 void drawStart() {
   background(100, 100, 255);
   btnStart.display();
+  textSize(80);
+  textFont(helv);
+  text("Digipets", 310,180);
 }
 
 void drawPlay() {
@@ -102,10 +110,10 @@ void mousePressed() {
       screen = 's';
       break;
     }
-    case 's':
-      if (btnStart.clicked()) {
-        screen = 'p';
-        break;
-      }
+  case 's':
+    if (btnStart.clicked()) {
+      screen = 'p';
+      break;
     }
   }
+}
