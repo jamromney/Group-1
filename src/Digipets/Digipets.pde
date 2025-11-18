@@ -112,6 +112,7 @@ void drawPlay() {
     toy[i].bounce();
   }
   pet1.display();
+  pet1.hover(mouseX, mouseY);
   btnPause.display();
 }
 
