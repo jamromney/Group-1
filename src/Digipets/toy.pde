@@ -1,38 +1,59 @@
 class Toy {
   // Member Variables
-  float x, y, w, h;
-  boolean onClick;
+  int x, y, w, h, speed, speedY;
+  color r, g, b;
+  boolean over;
 
-
-  //Constructor
-  Toy(float x, float y) {
+  // Constructor
+  Toy(int x, int y) {
     this.x = x;
     this.y = y;
+    speed = 2;
+    speedY = 2;
     w = 50;
     h = 50;
-    onClick = false;
+    r = int(random(128, 255));
+    g = int(random(128, 255));
+    b = int(random(128, 255));
   }
 
-  //Member Methods
   void display() {
-    if (onClick == true) {
-      fill(255, 0, 0);
-      rectMode(CENTER);
-      rect(x, y, w, h);
-    } else {
-      fill(0, 255, 0);
-      rectMode(CENTER);
-      rect(x, y, w, h);
+    fill(r, g, b);
+    stroke(100);
+    ellipse(x, y, w, h);
+    if (mousePressed && mouseX >= x-30 && mouseX <= x+30 && mouseY >= y-30 && mouseY <= y+30) {
+      x = mouseX;
+      y = mouseY;
+
+      if (mouseX >= 475) {
+        x = 475;
+      } else if (mouseX <= 25) {
+        x = 25;
+      }
+
+      if (mouseY >= 475) {
+        y = 475;
+      } else if (mouseY <= 25) {
+        y = 25;
+      }
     }
   }
 
-  boolean clicked(int tempX, int tempY) {
-    if (x>tempX-w/2 && x<tempX+w/2 && y>tempY-h/2 && y<tempY+h/2 ) {
-      onClick = true;
-      return true;
-    } else {
-      onClick = false;
-      return false;
+  // Member Methods
+  void bounce() {
+    x+=speed;
+    y+=speedY;
+    if (x>=475 || x<=25) {
+      speed*=-1;
+      r = int(random(0, 255));
+      g = int(random(0, 255));
+      b = int(random(0, 255));
+    }
+    if (y>=475 || y<=25) {
+      speedY*=-1;
+      r = int(random(0, 255));
+      g = int(random(0, 255));
+      b = int(random(0, 255));
     }
   }
 }
