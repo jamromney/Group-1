@@ -20,8 +20,8 @@
 ## Project Timeline
 
 ## Group
-- Jake (jamromney@github): README.md
-- Emma (EmmaWill815@github): UML Diagram
+- Jake (jamromney@github): README.md, Waste and Food class
+- Emma (EmmaWill815@github): UML Diagram, Project Timeline, Bath class
 - Gabriel (425656gabriel@github): Project Timeline
-- Eliana (9654277-svg@github): UI Mockup
-- Claire (SkylineHighStudend@github): UI Mockup
+- Eliana (9654277-svg@github): UI Mockup, Toy class
+- Claire (SkylineHighStudend@github): UI Mockup, Pet class
