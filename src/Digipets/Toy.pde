@@ -1,7 +1,7 @@
 class Toy {
   // Member Variables
   int x, y, w, h, speed, speedY;
-  color r,g,b;
+  color r, g, b;
   boolean over;
 
   // Constructor
@@ -12,18 +12,30 @@ class Toy {
     speedY = 2;
     w = 50;
     h = 50;
-    r = int(random(0, 255));
-    g = int(random(0, 255));
-    b = int(random(0, 255));
+    r = int(random(128, 255));
+    g = int(random(128, 255));
+    b = int(random(128, 255));
   }
 
   void display() {
-    fill(r,g,b);
+    fill(r, g, b);
     stroke(100);
     ellipse(x, y, w, h);
     if (mousePressed && mouseX >= x-30 && mouseX <= x+30 && mouseY >= y-30 && mouseY <= y+30) {
       x = mouseX;
       y = mouseY;
+
+      if (mouseX >= 475) {
+        x = 475;
+      } else if (mouseX <= 25) {
+        x = 25;
+      }
+
+      if (mouseY >= 475) {
+        y = 475;
+      } else if (mouseY <= 25) {
+        y = 25;
+      }
     }
   }
 
@@ -31,13 +43,13 @@ class Toy {
   void bounce() {
     x+=speed;
     y+=speedY;
-    if (x>=500 || x<=0) {
+    if (x>=475 || x<=25) {
       speed*=-1;
       r = int(random(0, 255));
       g = int(random(0, 255));
       b = int(random(0, 255));
     }
-    if (y>=500 || y<=0) {
+    if (y>=475 || y<=25) {
       speedY*=-1;
       r = int(random(0, 255));
       g = int(random(0, 255));
