@@ -4,10 +4,10 @@ Bath[] bath = new Bath[1];
 Toy[] toy = new Toy[1];
 Pet pet1;
 
-char screen = 's'; // s = Start Menu, p = main play screen
+char screen = 's'; // s = Start Menu, p = main play screen, e = end screen
 
 // Buttons
-Button btnStart, btnEnd;
+Button btnStart, btnEnd, btnPause, btnRestart;
 
 // Timer Settings
 int interval = 10000;//120000;  // 2 minutes in ms
@@ -45,7 +45,9 @@ void setup() {
 
   // Buttons
   btnStart = new Button("Play!", 230, 280, 160, 50);
-  btnEnd = new Button("Pause", 40, 540, 160, 50);
+  btnPause = new Button("Pause", 40, 540, 160, 50);
+  btnEnd = new Button("End", 40, 540, 160, 50);
+  btnRestart = new Button("Resume", 80, 450, 160, 50);
 }
 
 void draw() {
@@ -57,6 +59,9 @@ void draw() {
   case 'p':
     drawPlay();
     break;
+  case 'e':
+    drawEnd();
+    break;
   }
 }
 
@@ -66,7 +71,13 @@ void drawStart() {
   fill(230);
   textSize(80);
   textFont(helv);
-  text("Digipets", 310,180);
+  text("Digipets", 310, 180);
+}
+
+void drawEnd() {
+  background(100, 100, 255);
+  btnEnd.display();
+  btnRestart.display();
 }
 
 void drawPlay() {
@@ -101,18 +112,28 @@ void drawPlay() {
     toy[i].bounce();
   }
   pet1.display();
-  btnEnd.display();
+  btnPause.display();
 }
 
 void mousePressed() {
   switch(screen) {
   case 'p':
     if (btnEnd.clicked()) {
+      screen = 'e';
+      break;
+    }
+    break;
+  case 's':
+    if (btnStart.clicked()) {
+      screen = 'p';
+      break;
+    }
+  case 'e':
+    if (btnEnd.clicked()) {
       screen = 's';
       break;
     }
-  case 's':
-    if (btnStart.clicked()) {
+    if (btnRestart.clicked()) {
       screen = 'p';
       break;
     }
