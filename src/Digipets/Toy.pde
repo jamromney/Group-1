@@ -8,7 +8,7 @@ class Toy {
   Toy(int x, int y) {
     this.x = x;
     this.y = y;
-    speed = 2;
+    speed = 3;
     speedY = 2;
     w = 50;
     h = 50;
