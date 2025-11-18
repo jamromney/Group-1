@@ -19,8 +19,8 @@ class Toy {
 
   void display() {
     fill(r, g, b);
-    stroke(100);
     ellipse(x, y, w, h);
+    strokeWeight(6);
     if (mousePressed && mouseX >= x-30 && mouseX <= x+30 && mouseY >= y-30 && mouseY <= y+30) {
       x = mouseX;
       y = mouseY;
