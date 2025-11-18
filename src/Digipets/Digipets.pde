@@ -10,7 +10,7 @@ char screen = 's'; // s = Start Menu, p = main play screen, e = end screen
 Button btnStart, btnEnd, btnPause, btnRestart;
 
 // Timer Settings
-int interval = 10000;//120000;  // 2 minutes in ms
+int interval = 200000;//120000;  // 2 minutes in ms
 int lastTime = 0;
 
 // Trash Can
