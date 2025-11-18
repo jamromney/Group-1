@@ -18,15 +18,15 @@
 | `Bath` | `water()`, `display()` |
 
 ## Project Timeline
-Nov 20: Work on final look
-- Nov 25: Plan what classes will do
-- Dec 2: Rough class improvement
-- Dec 4: Connect Classes
-- Dec 5: Work on class functions
-- Dec 9: Conect it all together
-- Dec 11: Cleanup/test
-- Dec 16: Cleanup/test
-- Dec 18: Finish "Final look"
+- Nov 20 - Work on final look
+- Nov 25 - Plan what classes will do
+- Dec 2 - Rough class improvement
+- Dec 4 - Connect Classes
+- Dec 5 - Work on class functions
+- Dec 9 - Conect it all together
+- Dec 11 - Cleanup/test
+- Dec 16 - Cleanup/test
+- Dec 18 - Finish "Final look"
 
 ## Group
 - Jake (jamromney@github): README.md, Waste and Food class
