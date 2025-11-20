@@ -8,7 +8,7 @@ Food food1;
 char screen = 's'; // s = Start Menu, p = main play screen, e = end screen
 
 // Buttons
-Button btnStart, btnEnd, btnPause, btnRestart;
+Button btnStart, btnEnd, btnPause, btnRestart, btnMenu;
 
 // Timer Settings
 int interval = 60000;//120000;  // 2 minutes in ms
@@ -51,7 +51,7 @@ void setup() {
   btnPause = new Button("Pause", 40, 540, 160, 50);
   btnEnd = new Button("End", 40, 540, 160, 50);
   btnRestart = new Button("Resume", 250, 540, 160, 50);
-}
+  btnMenu = new Button("Menu",120, 340, 160, 50)};
 
 void draw() {
   background(255);
@@ -65,7 +65,9 @@ void draw() {
   case 'e':
     drawEnd();
     break;
-  }
+case 'm':
+    drawMenu();
+    break;  }
 }
 
 void drawStart() {
@@ -83,6 +85,11 @@ void drawEnd() {
   btnRestart.display();
 }
 
+void drawMenu() {
+  background(100, 100, 255);
+  btnEnd.display();
+  btnRestart.display();
+}
 void drawPlay() {
   // Background
   fill(#627FD3);
@@ -142,7 +149,12 @@ void mousePressed() {
       screen = 's';
       break;
     }
-    if (btnRestart.clicked()) {
+case 'm':
+    if(btnMenu.clicked()) {
+      screen = 's';
+      break;
+    }    
+if (btnRestart.clicked()) {
       screen = 'p';
       break;
     }
