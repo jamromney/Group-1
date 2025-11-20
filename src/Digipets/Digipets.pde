@@ -3,6 +3,7 @@ ArrayList<Waste> waste = new ArrayList<Waste>();
 Bath[] bath = new Bath[1];
 Toy[] toy = new Toy[1];
 Pet pet1;
+Food food1;
 
 char screen = 's'; // s = Start Menu, p = main play screen, e = end screen
 
@@ -10,7 +11,7 @@ char screen = 's'; // s = Start Menu, p = main play screen, e = end screen
 Button btnStart, btnEnd, btnPause, btnRestart;
 
 // Timer Settings
-int interval = 200000;//120000;  // 2 minutes in ms
+int interval = 60000;//120000;  // 2 minutes in ms
 int lastTime = 0;
 
 // Trash Can
@@ -40,14 +41,16 @@ void setup() {
   color c1 = color(255, 255, 255);
   color c2 = color(255, 255, 255);
   color c3 = color(255, 255, 255);
-  pet1 = new Pet(300, 300, 450, 550, 1, c1, c2, c3);
-  pet1.display();
+  pet1 = new Pet(300, 300, 1, c1, c2, c3);
+  
+  // Food
+  food1 = new Food(100,40);
 
   // Buttons
   btnStart = new Button("Play!", 230, 280, 160, 50);
   btnPause = new Button("Pause", 40, 540, 160, 50);
   btnEnd = new Button("End", 40, 540, 160, 50);
-  btnRestart = new Button("Resume", 80, 450, 160, 50);
+  btnRestart = new Button("Resume", 250, 540, 160, 50);
 }
 
 void draw() {
@@ -81,10 +84,14 @@ void drawEnd() {
 }
 
 void drawPlay() {
+  // Background
+  fill(#627FD3);
+  rect(0, 520, width, height);
+  
   // Timer
   if (millis() - lastTime >= interval) {
     println("Event triggered!");
-    waste.add(new Waste(50, 100));
+    waste.add(new Waste(pet1.x - 50, pet1.y + 20));
     lastTime = millis(); // reset timer
   }
 
@@ -102,7 +109,7 @@ void drawPlay() {
 
   // Garbage Can
   imageMode(CENTER);
-  image(can, 250, 30);
+  image(can, 250, 50);
   // bath class
   for (int i=0; i<bath.length; i++) {
     bath[i].display();
@@ -113,6 +120,7 @@ void drawPlay() {
   }
   pet1.display();
   pet1.move(mouseX, mouseY);
+  food1.display();
   btnPause.display();
 }
 
