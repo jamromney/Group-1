@@ -5,6 +5,8 @@ Toy[] toy = new Toy[1];
 Pet pet1;
 Food food1;
 
+char screen = 's'; // s = Start Menu, p = main play screen, e = end screen
+
 // Buttons
 Button btnStart, btnEnd, btnPause, btnRestart, btnMenu;
 
@@ -51,6 +53,7 @@ void setup() {
   btnRestart = new Button("Resume", 250, 540, 160, 50);
   btnMenu = new Button("Menu",120, 340, 160, 50);
 }
+
 void draw() {
   background(255);
   switch(screen) {
@@ -65,12 +68,14 @@ void draw() {
     break;
 case 'm':
     drawMenu();
-    break;  }
+    break;
+  }
 }
 
 void drawStart() {
   background(100, 100, 255);
   btnStart.display();
+  btnMenu.display();
   fill(230);
   textSize(80);
   textFont(helv);
@@ -88,6 +93,7 @@ void drawMenu() {
   btnEnd.display();
   btnRestart.display();
 }
+
 void drawPlay() {
   // Background
   fill(#627FD3);
@@ -141,6 +147,11 @@ void mousePressed() {
     if (btnStart.clicked()) {
       screen = 'p';
       break;
+    } 
+    if (btnMenu.clicked()) {
+      screen = 'm';
+      println("Menu clicked");
+      break;
     }
   case 'e':
     if (btnEnd.clicked()) {
@@ -158,3 +169,5 @@ if (btnRestart.clicked()) {
     }
   }
 }
+
+
