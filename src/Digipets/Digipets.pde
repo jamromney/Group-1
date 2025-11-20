@@ -5,8 +5,6 @@ Toy[] toy = new Toy[1];
 Pet pet1;
 Food food1;
 
-char screen = 's'; // s = Start Menu, p = main play screen, e = end screen
-
 // Buttons
 Button btnStart, btnEnd, btnPause, btnRestart, btnMenu;
 
@@ -51,8 +49,8 @@ void setup() {
   btnPause = new Button("Pause", 40, 540, 160, 50);
   btnEnd = new Button("End", 40, 540, 160, 50);
   btnRestart = new Button("Resume", 250, 540, 160, 50);
-  btnMenu = new Button("Menu",120, 340, 160, 50)};
-
+  btnMenu = new Button("Menu",120, 340, 160, 50);
+}
 void draw() {
   background(255);
   switch(screen) {
