@@ -42,16 +42,16 @@ void setup() {
   color c2 = color(255, 255, 255);
   color c3 = color(255, 255, 255);
   pet1 = new Pet(300, 300, 1, c1, c2, c3);
-  
+
   // Food
-  food1 = new Food(100,40);
+  food1 = new Food(100, 40);
 
   // Buttons
   btnStart = new Button("Play!", 230, 280, 160, 50);
   btnPause = new Button("Pause", 40, 540, 160, 50);
   btnEnd = new Button("End", 40, 540, 160, 50);
   btnRestart = new Button("Resume", 250, 540, 160, 50);
-  btnMenu = new Button("Menu",120, 340, 160, 50);
+  btnMenu = new Button("Menu", 120, 340, 160, 50);
 }
 
 void draw() {
@@ -66,7 +66,7 @@ void draw() {
   case 'e':
     drawEnd();
     break;
-case 'm':
+  case 'm':
     drawMenu();
     break;
   }
@@ -75,7 +75,6 @@ case 'm':
 void drawStart() {
   background(100, 100, 255);
   btnStart.display();
-  btnMenu.display();
   fill(230);
   textSize(80);
   textFont(helv);
@@ -93,12 +92,11 @@ void drawMenu() {
   btnEnd.display();
   btnRestart.display();
 }
-
 void drawPlay() {
   // Background
   fill(#627FD3);
   rect(0, 520, width, height);
-  
+
   // Timer
   if (millis() - lastTime >= interval) {
     println("Event triggered!");
@@ -147,27 +145,20 @@ void mousePressed() {
     if (btnStart.clicked()) {
       screen = 'p';
       break;
-    } 
-    if (btnMenu.clicked()) {
-      screen = 'm';
-      println("Menu clicked");
-      break;
     }
   case 'e':
     if (btnEnd.clicked()) {
       screen = 's';
       break;
     }
-case 'm':
-    if(btnMenu.clicked()) {
+  case 'm':
+    if (btnMenu.clicked()) {
       screen = 's';
       break;
-    }    
-if (btnRestart.clicked()) {
+    }
+    if (btnRestart.clicked()) {
       screen = 'p';
       break;
     }
   }
 }
-
-
