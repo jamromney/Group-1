@@ -7,6 +7,8 @@
 ![Class Diagram](https://github.com/jamromney/Group-1/blob/main/Class%20Diagram/digipets-uml.png)
 ![UI Mockup](https://github.com/jamromney/Group-1/blob/main/Class%20Diagram/GUImockup.png)
 
+[Src](https://github.com/jamromney/Group-1/tree/main/src)
+
 ## Core Classes
 | Class | Role |
 |-------|------|
