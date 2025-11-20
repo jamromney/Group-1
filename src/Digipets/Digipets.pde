@@ -75,6 +75,7 @@ void draw() {
 void drawStart() {
   background(100, 100, 255);
   btnStart.display();
+  btnMenu.display();
   fill(230);
   textSize(80);
   textFont(helv);
@@ -145,7 +146,11 @@ void mousePressed() {
     if (btnStart.clicked()) {
       screen = 'p';
       break;
+    } else if(btnMenu.clicked()) {
+      screen = 'm';
+      break;
     }
+    break;
   case 'e':
     if (btnEnd.clicked()) {
       screen = 's';
@@ -162,3 +167,5 @@ void mousePressed() {
     }
   }
 }
+
+
