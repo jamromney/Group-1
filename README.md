@@ -29,8 +29,8 @@
 - Dec 18 - Finish "Final look"
 
 ## Group
-- Jake (jamromney@github): README.md, Waste and Food class
+- Jake (jamromney@github): README.md, Waste and Food class, Switch Screen Logic
 - Emma (EmmaWill815@github): UML Diagram, Project Timeline, Bath class
-- Gabriel (425656gabriel@github): Project Timeline
+- Gabriel (425656gabriel@github): Project Timeline, Game Over screen
 - Eliana (9654277-svg@github): UI Mockup, Toy class
-- Claire (SkylineHighStudend@github): UI Mockup, Pet class
+- Claire (SkylineHighStudend@github): UI Mockup, Pet class, Start Screen
