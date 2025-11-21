@@ -3,7 +3,7 @@ ArrayList<Waste> waste = new ArrayList<Waste>();
 Bath[] bath = new Bath[1];
 Toy[] toy = new Toy[1];
 Pet pet1;
-Food food1;
+//Food food1;
 
 char screen = 's'; // s = Start Menu, p = main play screen, e = end screen
 
@@ -20,10 +20,18 @@ PImage can;
 // Font
 PFont helv;
 
+//Dragables
+ArrayList<Dragable> dragables = new ArrayList<>();
+int createDragable () { //returns index of dragable in dragables
+  Dragable d = new Dragable();
+  dragables.add(d);
+  return dragables.size() - 1;
+}
 
 void setup() {
   size(600, 600);
   background(255);
+  frameRate(60);
   helv = createFont("Helvetica-Bold", 90);
 
   // Grabage Can
@@ -44,7 +52,7 @@ void setup() {
   pet1 = new Pet(300, 300, 1, c1, c2, c3);
 
   // Food
-  food1 = new Food(100, 40);
+  //food1 = new Food(100, 40);
 
   // Buttons
   btnStart = new Button("Play!", 230, 280, 160, 50);
@@ -56,6 +64,11 @@ void setup() {
 
 void draw() {
   background(255);
+  
+  for (Dragable d : dragables) {
+    
+  }
+  
   switch(screen) {
   case 's':
     drawStart();
@@ -126,11 +139,11 @@ void drawPlay() {
   }
   for (int i=0; i<toy.length; i++) {
     toy[i].display();
-    toy[i].bounce();
+    //toy[i].bounce();
   }
   pet1.display();
   pet1.move(mouseX, mouseY);
-  food1.display();
+  //food1.display();
   btnPause.display();
 }
 
@@ -167,5 +180,10 @@ void mousePressed() {
     }
   }
 }
-
-
+void mouseClicked() {
+  for (Dragable d : dragables) {
+    if (d.mouseOver()) {
+       d.dragged = true;
+    }
+  }
+}

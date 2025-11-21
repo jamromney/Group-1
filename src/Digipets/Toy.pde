@@ -3,6 +3,10 @@ class Toy {
   int x, y, w, h, speed, speedY;
   color r, g, b;
   boolean over;
+  PImage catToy;
+  PImage dogToy;
+  
+  boolean tempPetState = true; //false = cat, true = dog
 
   // Constructor
   Toy(int x, int y) {
@@ -15,11 +19,20 @@ class Toy {
     r = int(random(128, 255));
     g = int(random(128, 255));
     b = int(random(128, 255));
+    
+    catToy = loadImage("Toy1GUI.png");
+    dogToy = loadImage("Toy2GUI.png");
   }
 
   void display() {
-    fill(r, g, b);
-    ellipse(x, y, w, h);
+    //fill(r, g, b);
+    //ellipse(x, y, w, h);
+    
+    //PUT IMAGE CODE HERE
+    if (tempPetState) image(dogToy,x,y);
+    if (!tempPetState) image(catToy,x,y);
+    
+    
     strokeWeight(6);
     if (mousePressed && mouseX >= x-30 && mouseX <= x+30 && mouseY >= y-30 && mouseY <= y+30) {
       x = mouseX;
