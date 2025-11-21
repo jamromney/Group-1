@@ -35,5 +35,5 @@
 - Jake (jamromney@github): README.md, Waste and Food class, Switch Screen Logic
 - Emma (EmmaWill815@github): UML Diagram, Project Timeline, Bath class
 - Gabriel (425656gabriel@github): Project Timeline, Game Over screen
-- Eliana (9654277-svg@github): UI Mockup, Toy class, Menu Screen
-- Claire (SkylineHighStudend@github): UI Mockup, Pet class, Start Screen
+- Eliana (9654277-svg@github): UI Mockup, Pet class, Menu Screen
+- Claire (SkylineHighStudend@github): UI Mockup, Toy class, Start Screen
