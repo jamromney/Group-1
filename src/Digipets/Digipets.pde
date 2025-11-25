@@ -82,6 +82,9 @@ void draw() {
   case 'm':
     drawMenu();
     break;
+  case 'g'
+    drawGameOver();
+    break;
   }
 }
 
@@ -93,6 +96,27 @@ void drawStart() {
   textSize(80);
   textFont(helv);
   text("Digipets", 310, 180);
+}
+
+void drawGameOver() {
+  rectMode(CENTER);
+  fill(0, 50, 0);
+  rect(width/2, height/2, 600, 600);
+  ellipseMode(CENTER);
+  strokeWeight(0);
+  fill(0, 100, 0);
+  ellipse(width/2, height/2, 600, 500);
+  fill(0, 150, 0);
+  ellipse(width/2, height/2, 400, 300);
+  fill(0);
+  textMode(CENTER);
+  textSize(87);
+  text("GAME OVER", 30, height/2-3);
+  text(":(", width/2-22, height*3/4-2);
+  fill(255, 255, 0);
+  textSize(87);
+  text("GAME OVER", 33, height/2);
+  text(":(", width/2-20, height*3/4);
 }
 
 void drawEnd() {
