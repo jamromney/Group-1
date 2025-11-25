@@ -111,12 +111,12 @@ void drawGameOver() {
   fill(0);
   textMode(CENTER);
   textSize(87);
-  text("GAME OVER", 30, height/2-3);
-  text(":(", width/2-22, height*3/4-2);
+  text("GAME OVER", width/2, height/2-3);
+  text(":(", width/2-2, height*3/4-4);
   fill(255, 255, 0);
   textSize(87);
-  text("GAME OVER", 33, height/2);
-  text(":(", width/2-20, height*3/4);
+  text("GAME OVER", width/2 + 3, height/2);
+  text(":(", width/2, height*3/4);
 }
 
 void drawEnd() {
@@ -178,7 +178,13 @@ void mousePressed() {
       screen = 'e';
       break;
     }
+switch(screen) {
+    case 'g':
+  if(btnGameOver.clicked()) {
+    screen = 'g';
     break;
+  }
+}
   case 's':
     if (btnStart.clicked()) {
       screen = 'p';
