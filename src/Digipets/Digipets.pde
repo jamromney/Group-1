@@ -60,6 +60,7 @@ void setup() {
   btnEnd = new Button("End", 40, 540, 160, 50);
   btnRestart = new Button("Resume", 250, 540, 160, 50);
   btnMenu = new Button("Menu", 120, 340, 160, 50);
+  btnGameOver = new Button("G_Over", 100, 100, 160, 50);
 }
 
 void draw() {
@@ -98,6 +99,7 @@ void drawStart() {
   text("Digipets", 310, 180);
 }
 
+//Gabriel Gonzales
 void drawGameOver() {
   rectMode(CENTER);
   fill(0, 50, 0);
