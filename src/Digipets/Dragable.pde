@@ -1,3 +1,4 @@
+//Claire Danzig
 public class Dragable {  
   int x,y;
   int w,h;
