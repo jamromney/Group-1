@@ -7,8 +7,6 @@ class Waste {
   int gy = 30;
   boolean display = true;
   PImage waste;
-  
-
 
   // constructor
   Waste(int x, int y) {
@@ -17,24 +15,26 @@ class Waste {
     w = 40;
     h = 40;
     over = false;
-    
-    
-    
+
     waste = loadImage("waste.png");
-    waste.resize(40,40);
+    waste.resize(40, 40);
   }
 
   // Member Methods
   void display() {
     // Delete Waste
-    if (x + w/2 > gx && x - w/2 < gx && y + h/2 > gy && y - h/2 < gy) {
-      display = false;
-    }
-    // Display Waste
+    //if (x + w/2 > gx && x - w/2 < gx && y + h/2 > gy && y - h/2 < gy) {
+    //  display = false;
+    //}
+     //Display Waste
     if (display == true) {
       imageMode(CENTER);
       image(waste, x, y);
     }
+  }
+
+  boolean intersects() {
+    return dist(x, y, 250, 50) < w-15;
   }
 
   boolean hover(int tempX, int tempY) {
