@@ -1,4 +1,4 @@
-//Claire Danzig
+//Gabriel Gonzales
 class Toy {
   // Member Variables
   int x, y, w, h, speed, speedY;
