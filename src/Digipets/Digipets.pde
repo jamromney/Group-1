@@ -156,7 +156,7 @@ void drawPlay() {
 
   // Toy
   toy[0].display();
-  toy[0].bounce();
+  //toy[0].bounce();
 
   // Pet
   pet1.display();
