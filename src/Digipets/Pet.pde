@@ -4,7 +4,7 @@ class Pet {
   int x, y, w, h, mood;
   color c1, c2, c3;
   boolean over;
-  PImage p1;
+  PImage p1,p2;
 
   // Constructer
   Pet(int x, int y, int mood, color c1, color c2, color c3) {
@@ -18,11 +18,14 @@ class Pet {
     this.c3 = c3;
     p1 = loadImage("Cat (2).png");
     p1.resize(266, 170);
-    over = false;
+p2 = loadImage("dog (1).png");
+    p2.resize(60, 90);
+    over = false; 
   }
   void display() {
     image(p1, x, y);
-  }
+image(p2, x, y);  
+}
   void eat() {
   }
   void waste() {
