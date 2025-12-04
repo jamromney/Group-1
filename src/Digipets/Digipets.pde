@@ -2,11 +2,11 @@
 // GLOBALS
 // ============================================================
 
-// Waste system (original)
+// Waste system
 ArrayList<Waste> waste = new ArrayList<Waste>();
 Waste selectedWaste = null;
 
-// Optional Dragable system (future expansion)
+// Dragable system
 ArrayList<Dragable> dragables = new ArrayList<Dragable>();
 int createDragable() {
   Dragable d = new Dragable();
@@ -15,29 +15,24 @@ int createDragable() {
 }
 
 // Game Objects
-Bath bath;
-Toy toy;
+Bath[] bath = new Bath[1];
+Toy[] toy = new Toy[1];
 Pet pet1;
 
 // Screens
-// s = Start, p = Play, e = End, m = Menu, g = Game Over
-char screen = 's';
+char screen = 's';   // s = Start, p = Play, e = End, m = Menu, g = Game Over
 
 // Buttons
 Button btnStart, btnEnd, btnPause, btnRestart, btnMenu, btnGameOver;
 
 // Timer
-int interval = 60000; // 60 seconds
+int interval = 60000; 
 int lastTime = 0;
 
 // Graphics
 PImage can;
 PFont helv;
 
-
-// ============================================================
-// SETUP
-// ============================================================
 void setup() {
   size(600, 600);
   frameRate(60);
@@ -48,10 +43,13 @@ void setup() {
   can = loadImage("garbageCan.png");
   can.resize(80, 80);
 
-  // Game objects
-  bath = new Bath(150, 30, 15, 15, #29A7D3, #29A7D3, #29A7D3);
-  toy = new Toy(50, 30);
+  // Bath
+  bath[0] = new Bath(230, 150, 500, 500, #29A7D3, #29A7D3, #29A7D3);
 
+  // Toy
+  toy[0] = new Toy(50, 30);
+
+  // Pet
   pet1 = new Pet(300, 300, 1, color(255), color(255), color(255));
 
   // Buttons
@@ -64,28 +62,17 @@ void setup() {
 
   lastTime = millis();
 }
-
-
-// ============================================================
-// MAIN DRAW LOOP
-// ============================================================
 void draw() {
   background(255);
 
   switch (screen) {
   case 's': drawStart(); break;
-  case 'p': drawPlay(); break;
-  case 'e': drawEnd(); break;
-  case 'm': drawMenu(); break;
+  case 'p': drawPlay();  break;
+  case 'e': drawEnd();   break;
+  case 'm': drawMenu();  break;
   case 'g': drawGameOver(); break;
   }
 }
-
-
-// ============================================================
-// SCREENS
-// ============================================================
-
 void drawStart() {
   background(100, 100, 255);
   textFont(helv);
@@ -97,19 +84,6 @@ void drawStart() {
   btnStart.display();
   btnMenu.display();
 }
-
-void drawEnd() {
-  background(100, 100, 255);
-  btnEnd.display();
-  btnRestart.display();
-}
-
-void drawMenu() {
-  background(100, 100, 255);
-  btnEnd.display();
-  btnRestart.display();
-}
-
 void drawGameOver() {
   rectMode(CENTER);
   fill(0, 50, 0);
@@ -132,25 +106,29 @@ void drawGameOver() {
 
   btnGameOver.display();
 }
-
-
-// ============================================================
-// GAMEPLAY SCREEN
-// ============================================================
+void drawEnd() {
+  background(100, 100, 255);
+  btnEnd.display();
+  btnRestart.display();
+}
+void drawMenu() {
+  background(100, 100, 255);
+  btnEnd.display();
+  btnRestart.display();
+}
 void drawPlay() {
 
   // Bottom bar
   fill(#627FD3);
   rect(0, 520, width, height);
 
-  // Timer → spawn waste
+  // Timer → spawn waste every 60s
   if (millis() - lastTime > interval) {
-    Waste w = new Waste(pet1.x - 50, pet1.y + 20);
-    waste.add(w);
+    waste.add(new Waste(pet1.x - 50, pet1.y + 20));
     lastTime = millis();
   }
 
-  // Display waste + drag logic
+  // Waste drag + draw
   for (int i = waste.size() - 1; i >= 0; i--) {
     Waste w = waste.get(i);
 
@@ -162,7 +140,7 @@ void drawPlay() {
 
     w.display();
 
-    // Delete waste if touching trash can
+    // If touching trash can → delete
     if (w.intersects()) {
       waste.remove(i);
     }
@@ -172,21 +150,21 @@ void drawPlay() {
   imageMode(CENTER);
   image(can, 250, 50);
 
-  // Game objects
-  bath.display();
-  toy.display();
-  toy.bounce();
+  // Bath
+  bath[0].display();
+  if (bath[0].hover(mouseX, mouseY)) bath[0].makeBubbles();
 
+  // Toy
+  toy[0].display();
+  toy[0].bounce();
+
+  // Pet
   pet1.display();
   pet1.move(mouseX, mouseY);
 
+  // Pause button
   btnPause.display();
 }
-
-
-// ============================================================
-// INPUT HANDLING
-// ============================================================
 void mousePressed() {
 
   // Waste selection (topmost first)
@@ -197,7 +175,7 @@ void mousePressed() {
     }
   }
 
-  // Screen button handling
+  // Screen button logic
   switch (screen) {
 
   case 's':
@@ -230,8 +208,7 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-  // Does NOT affect Waste system yet
-  // (kept for future Dragable support)
+  // Dragable support
   for (Dragable d : dragables) {
     if (d.mouseOver()) {
       d.dragged = true;
