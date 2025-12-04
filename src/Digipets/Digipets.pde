@@ -2,11 +2,11 @@
 // GLOBALS
 // ============================================================
 
-// Waste system (original)
+// Waste system
 ArrayList<Waste> waste = new ArrayList<Waste>();
 Waste selectedWaste = null;
 
-// Optional Dragable system (future expansion)
+// Optional future Dragable system
 ArrayList<Dragable> dragables = new ArrayList<Dragable>();
 int createDragable() {
   Dragable d = new Dragable();
@@ -18,16 +18,16 @@ int createDragable() {
 Bath bath;
 Toy toy;
 Pet pet1;
+Meter mood;  // <-- METER ADDED HERE
 
 // Screens
-// s = Start, p = Play, e = End, m = Menu, g = Game Over
-char screen = 's';
+char screen = 's';   // s = Start, p = Play, e = End, m = Menu, g = Game Over
 
 // Buttons
 Button btnStart, btnEnd, btnPause, btnRestart, btnMenu, btnGameOver;
 
 // Timer
-int interval = 60000; // 60 seconds
+int interval = 60000;
 int lastTime = 0;
 
 // Graphics
@@ -44,27 +44,28 @@ void setup() {
 
   helv = createFont("Helvetica-Bold", 90);
 
-  // Can
+  // Images
   can = loadImage("garbageCan.png");
   can.resize(80, 80);
 
-  // Background
   gameBackground = loadImage("MainGameBGGUI.png");
-  gameBackground.resize(600,600);
+  gameBackground.resize(600, 600);
 
-  // Game objects
+  // Game Objects
   bath = new Bath(150, 30, 15, 15, #29A7D3, #29A7D3, #29A7D3);
   toy = new Toy(50, 30);
-
   pet1 = new Pet(300, 300, 1, color(255), color(255), color(255));
 
+  // Meter added
+  mood = new Meter('h');
+
   // Buttons
-  btnStart = new Button("Play!", 230, 280, 160, 50);
-  btnPause = new Button("Pause", 40, 540, 160, 50);
-  btnEnd = new Button("End", 40, 540, 160, 50);
-  btnRestart = new Button("Resume", 250, 540, 160, 50);
-  btnMenu = new Button("Menu", 120, 340, 160, 50);
-  btnGameOver = new Button("Game Over", 320, 540, 160, 50);
+  btnStart     = new Button("Play!",    230, 280, 160, 50);
+  btnPause     = new Button("Pause",     40, 540, 160, 50);
+  btnEnd       = new Button("End",       40, 540, 160, 50);
+  btnRestart   = new Button("Resume",   250, 540, 160, 50);
+  btnMenu      = new Button("Menu",     120, 340, 160, 50);
+  btnGameOver  = new Button("Game Over", 320, 540, 160, 50);
 
   lastTime = millis();
 }
@@ -76,13 +77,12 @@ void setup() {
 void draw() {
   background(gameBackground);
 
-
   switch (screen) {
-  case 's': drawStart(); break;
-  case 'p': drawPlay(); break;
-  case 'e': drawEnd(); break;
-  case 'm': drawMenu(); break;
-  case 'g': drawGameOver(); break;
+    case 's': drawStart(); break;
+    case 'p': drawPlay();  break;
+    case 'e': drawEnd();   break;
+    case 'm': drawMenu();  break;
+    case 'g': drawGameOver(); break;
   }
 }
 
@@ -120,19 +120,20 @@ void drawGameOver() {
   rect(0, 0, 600, 600);
 
   fill(0, 100, 0);
-  strokeWeight(0);
   ellipse(width/2, height/2, 600, 500);
   fill(0, 150, 0);
   ellipse(width/2, height/2, 400, 300);
 
   fill(0);
   textSize(87);
+  textAlign(CENTER);
   text("GAME OVER", width/2, height/2 - 30);
-  text(":(", width/2, height*3/4 - 30);
+  text(":(", width/2, height * 3/4 - 30);
 
   fill(255, 255, 0);
   text("GAME OVER", width/2 + 3, height/2 - 28);
-  text(":(", width/2 + 3, height*3/4 - 28);
+  text(":(", width/2 + 3, height * 3/4 - 28);
+
   btnRestart.display();
 }
 
@@ -146,18 +147,16 @@ void drawPlay() {
   fill(#627FD3);
   rect(0, 520, width, height);
 
-  // Timer → spawn waste
+  // Timer → spawn waste every 60 sec
   if (millis() - lastTime > interval) {
-    Waste w = new Waste(pet1.x - 50, pet1.y + 20);
-    waste.add(w);
+    waste.add(new Waste(pet1.x - 50, pet1.y + 20));
     lastTime = millis();
   }
 
-  // Display waste + drag logic
+  // Waste dragging + display
   for (int i = waste.size() - 1; i >= 0; i--) {
     Waste w = waste.get(i);
 
-    // Dragging
     if (mousePressed && w == selectedWaste) {
       w.x = mouseX;
       w.y = mouseY;
@@ -165,26 +164,33 @@ void drawPlay() {
 
     w.display();
 
-    // Delete waste if touching trash can
+    // Remove if dropped on trash can
     if (w.intersects()) {
       waste.remove(i);
     }
   }
 
-  // Draw trash can
+  // Trash can
   imageMode(CENTER);
   image(can, 250, 50);
 
-  // Game objects
-if (bath.hover(mouseX, mouseY)) {
-  bath.makeBubbles();
-}  
-bath.display();
+  // Bath + bubble logic restored
+  bath.display();
+  if (bath.hover(mouseX, mouseY)) {
+    bath.makeBubbles();
+  }
+
+  // Toy
   toy.display();
 
+  // Meter added
+  mood.display();
+
+  // Pet
   pet1.display();
   pet1.move(mouseX, mouseY);
 
+  // Buttons
   btnPause.display();
   btnGameOver.display();
 }
@@ -195,7 +201,7 @@ bath.display();
 // ============================================================
 void mousePressed() {
 
-  // Waste selection (topmost first)
+  // Select waste item
   for (int i = waste.size() - 1; i >= 0; i--) {
     if (waste.get(i).hover(mouseX, mouseY)) {
       selectedWaste = waste.get(i);
@@ -203,33 +209,32 @@ void mousePressed() {
     }
   }
 
-  // Screen button handling
+  // Button logic
   switch (screen) {
 
-  case 's':
-    if (btnStart.clicked()) screen = 'p';
-    else if (btnMenu.clicked()) screen = 'm';
-    break;
+    case 's':
+      if (btnStart.clicked()) screen = 'p';
+      else if (btnMenu.clicked()) screen = 'm';
+      break;
 
-  case 'p':
-    if (btnEnd.clicked()) screen = 'e';
-    
-    if (btnGameOver.clicked()) screen = 'g';
-    break;
+    case 'p':
+      if (btnEnd.clicked()) screen = 'e';
+      if (btnGameOver.clicked()) screen = 'g';
+      break;
 
-  case 'e':
-    if (btnEnd.clicked()) screen = 's';
-    else if (btnRestart.clicked()) screen = 'p';
-    break;
+    case 'e':
+      if (btnEnd.clicked()) screen = 's';
+      else if (btnRestart.clicked()) screen = 'p';
+      break;
 
-  case 'm':
-    if (btnMenu.clicked()) screen = 's';
-    else if (btnRestart.clicked()) screen = 'p';
-    break;
+    case 'm':
+      if (btnMenu.clicked()) screen = 's';
+      else if (btnRestart.clicked()) screen = 'p';
+      break;
 
-  case 'g':
-    if (btnRestart.clicked()) screen = 'p';
-    break;
+    case 'g':
+      if (btnRestart.clicked()) screen = 'p';
+      break;
   }
 }
 
@@ -238,8 +243,6 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-  // Does NOT affect Waste system yet
-  // (kept for future Dragable support)
   for (Dragable d : dragables) {
     if (d.mouseOver()) {
       d.dragged = true;
