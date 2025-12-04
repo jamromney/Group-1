@@ -4,35 +4,41 @@ class Bath {
   boolean over;
   PImage bath;
 
-
-  Bath(int x, int y, int w, int h, color c1, color c2, color c3) {
+ Bath(int x, int y, int w, int h, color c1, color c2, color c3) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
-    this.c1 = c1;
-    this.c2 = c2;
-    this.c3 = c3;
-    
+
     bath = loadImage("bath.png");
-    bath.resize(80,80);
+    bath.resize(200, 200);
   }
 
   void display() {
-    image(bath, 230, 150);
-  }
+    image(bath, x, y);
 
-  void water() {
-  }
+    // draw bubbles
+    for (int i = bubbles.size()-1; i >= 0; i--) {
+      Bubble b = bubbles.get(i);
+      b.update();
+      b.display();
 
-  boolean hover(int tempX, int tempY) {
-    //false;
-    if (x>tempX && x<tempX && y>tempY && y<tempY) {
-      over = true;
-      return true;
-    } else {
-      over = false;
-      return false;
+      if (b.isOffScreen(y)) {
+        bubbles.remove(i);
+      }
     }
+  }
+
+  void makeBubbles() {
+    if (frameCount % 10 == 0) {
+      float bx = x + bath.width * 0.3 + random(bath.width * 0.4);
+      float by = y + bath.height * 0.6;
+      bubbles.add(new Bubble(bx, by));
+    }
+  }
+
+  boolean hover(int mx, int my) {
+    return mx > x && mx < x + bath.width &&
+           my > y && my < y + bath.height;
   }
 }
