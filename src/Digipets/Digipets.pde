@@ -70,7 +70,7 @@ void setup() {
 // MAIN DRAW LOOP
 // ============================================================
 void draw() {
-  background(255);
+  background(loadImage("MainGameBGGUI.png"));
 
   switch (screen) {
   case 's': drawStart(); break;
