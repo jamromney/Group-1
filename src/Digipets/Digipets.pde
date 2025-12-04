@@ -18,7 +18,7 @@ int createDragable() {
 Bath bath;
 Toy toy;
 Pet pet1;
-Meter mood;  // <-- METER ADDED HERE
+Meter mood, eat, clean;
 
 // Screens
 char screen = 's';   // s = Start, p = Play, e = End, m = Menu, g = Game Over
@@ -58,6 +58,8 @@ void setup() {
 
   // Meter added
   mood = new Meter('h');
+  eat = new Meter('e');
+  clean = new Meter('c');
 
   // Buttons
   btnStart     = new Button("Play!",    230, 280, 160, 50);
@@ -185,6 +187,8 @@ void drawPlay() {
 
   // Meter added
   mood.display();
+  eat.display();
+  clean.display();
 
   // Pet
   pet1.display();
