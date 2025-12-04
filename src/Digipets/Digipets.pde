@@ -176,6 +176,7 @@ void drawPlay() {
   image(can, 250, 50);
 
   // Game objects
+  bath.makeBubbles();
   bath.display();
   toy.display();
 
