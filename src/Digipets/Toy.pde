@@ -56,7 +56,7 @@ class Toy {
   }
 
   // Member Methods
-  void bounce() {
+  void bounce() { //Gabriel Gonzales
     x+=speed;
     y+=speedY;
     if (x>=475 || x<=25) {
