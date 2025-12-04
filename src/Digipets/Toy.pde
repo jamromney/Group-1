@@ -16,7 +16,7 @@ class Toy {
     speed = 3;
     speedY = 2;
     w = 50;
-    h = 50;
+    h = 200;
     r = int(random(128, 255));
     g = int(random(128, 255));
     b = int(random(128, 255));
