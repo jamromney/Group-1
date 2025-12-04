@@ -31,7 +31,7 @@ int interval = 60000; // 60 seconds
 int lastTime = 0;
 
 // Graphics
-PImage can;
+PImage can, gameBackground;
 PFont helv;
 
 
@@ -47,6 +47,10 @@ void setup() {
   // Can
   can = loadImage("garbageCan.png");
   can.resize(80, 80);
+
+  // Background
+  gameBackground = loadImage("MainGameBGGUI.png");
+  gameBackground.resize(600,600);
 
   // Game objects
   bath = new Bath(150, 30, 15, 15, #29A7D3, #29A7D3, #29A7D3);
@@ -70,7 +74,8 @@ void setup() {
 // MAIN DRAW LOOP
 // ============================================================
 void draw() {
-  background(loadImage("MainGameBGGUI.png"));
+  background(gameBackground);
+
 
   switch (screen) {
   case 's': drawStart(); break;
