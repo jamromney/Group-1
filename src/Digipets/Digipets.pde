@@ -173,7 +173,6 @@ void drawPlay() {
   // Game objects
   bath.display();
   toy.display();
-  toy.bounce();
 
   pet1.display();
   pet1.move(mouseX, mouseY);
