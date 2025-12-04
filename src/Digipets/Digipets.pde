@@ -62,7 +62,7 @@ void setup() {
   clean = new Meter('c');
 
   // Buttons
-  btnStart     = new Button("Play!",    230, 280, 160, 50);
+  btnStart     = new Button("Play!",loadImage("StartButtonGUI.png"));
   btnPause     = new Button("Pause",     40, 540, 160, 50);
   btnEnd       = new Button("End",       40, 540, 160, 50);
   btnRestart   = new Button("Resume",   250, 540, 160, 50);
