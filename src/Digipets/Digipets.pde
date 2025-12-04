@@ -16,6 +16,7 @@ int createDragable() {
 
 // Game Objects
 Bath bath;
+Bed bed;         // <-- Add Bed here
 Toy toy;
 Pet pet1;
 Meter mood, eat, clean;
@@ -53,21 +54,22 @@ void setup() {
 
   // Game Objects
   bath = new Bath(150, 30, 15, 15, #29A7D3, #29A7D3, #29A7D3);
-  toy = new Toy(50, 30);
+  bed  = new Bed(300, 30, 15, 15);       // <-- Initialize Bed
+  toy  = new Toy(50, 30);
   pet1 = new Pet(300, 300, 1, color(255), color(255), color(255));
 
-  // Meter added
+  // Meters
   mood = new Meter('h');
-  eat = new Meter('e');
+  eat  = new Meter('e');
   clean = new Meter('c');
 
   // Buttons
-  btnStart     = new Button("Play!",loadImage("StartButtonGUI.png"));
-  btnPause     = new Button("Pause",     40, 540, 160, 50);
-  btnEnd       = new Button("End",       40, 540, 160, 50);
-  btnRestart   = new Button("Resume",   250, 540, 160, 50);
-  btnMenu      = new Button("Menu",     120, 340, 160, 50);
-  btnGameOver  = new Button("Game Over", 320, 540, 160, 50);
+  btnStart    = new Button("Play!", loadImage("StartButtonGUI.png"));
+  btnPause    = new Button("Pause", 40, 540, 160, 50);
+  btnEnd      = new Button("End", 40, 540, 160, 50);
+  btnRestart  = new Button("Resume", 250, 540, 160, 50);
+  btnMenu     = new Button("Menu", 120, 340, 160, 50);
+  btnGameOver = new Button("Game Over", 320, 540, 160, 50);
 
   lastTime = millis();
 }
@@ -92,7 +94,6 @@ void draw() {
 // ============================================================
 // SCREENS
 // ============================================================
-
 void drawStart() {
   background(100, 100, 255);
   textFont(helv);
@@ -166,7 +167,6 @@ void drawPlay() {
 
     w.display();
 
-    // Remove if dropped on trash can
     if (w.intersects()) {
       waste.remove(i);
     }
@@ -176,16 +176,22 @@ void drawPlay() {
   imageMode(CENTER);
   image(can, 250, 50);
 
-  // Bath + bubble logic restored
+  // Bath + bubble logic
   bath.display();
   if (bath.hover(mouseX, mouseY)) {
     bath.makeBubbles();
   }
 
+  // Bed + Zzz logic
+  bed.display();
+  if (bed.hover(mouseX, mouseY)) {
+    bed.makeZzz();
+  }
+
   // Toy
   toy.display();
 
-  // Meter added
+  // Meters
   mood.display();
   eat.display();
   clean.display();
