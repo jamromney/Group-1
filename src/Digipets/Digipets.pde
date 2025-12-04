@@ -176,8 +176,10 @@ void drawPlay() {
   image(can, 250, 50);
 
   // Game objects
+if (bath.hover(mouseX, mouseY)) {
   bath.makeBubbles();
-  bath.display();
+}  
+bath.display();
   toy.display();
 
   pet1.display();
