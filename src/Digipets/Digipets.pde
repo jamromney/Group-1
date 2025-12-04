@@ -2,11 +2,11 @@
 // GLOBALS
 // ============================================================
 
-// Waste system
+// Waste system (original)
 ArrayList<Waste> waste = new ArrayList<Waste>();
 Waste selectedWaste = null;
 
-// Dragable system
+// Optional Dragable system (future expansion)
 ArrayList<Dragable> dragables = new ArrayList<Dragable>();
 int createDragable() {
   Dragable d = new Dragable();
@@ -15,24 +15,29 @@ int createDragable() {
 }
 
 // Game Objects
-Bath[] bath = new Bath[1];
-Toy[] toy = new Toy[1];
+Bath bath;
+Toy toy;
 Pet pet1;
 
 // Screens
-char screen = 's';   // s = Start, p = Play, e = End, m = Menu, g = Game Over
+// s = Start, p = Play, e = End, m = Menu, g = Game Over
+char screen = 's';
 
 // Buttons
 Button btnStart, btnEnd, btnPause, btnRestart, btnMenu, btnGameOver;
 
 // Timer
-int interval = 60000; 
+int interval = 60000; // 60 seconds
 int lastTime = 0;
 
 // Graphics
 PImage can;
 PFont helv;
 
+
+// ============================================================
+// SETUP
+// ============================================================
 void setup() {
   size(600, 600);
   frameRate(60);
@@ -43,13 +48,10 @@ void setup() {
   can = loadImage("garbageCan.png");
   can.resize(80, 80);
 
-  // Bath
-  bath[0] = new Bath(230, 150, 500, 500, #29A7D3, #29A7D3, #29A7D3);
+  // Game objects
+  bath = new Bath(150, 30, 15, 15, #29A7D3, #29A7D3, #29A7D3);
+  toy = new Toy(50, 30);
 
-  // Toy
-  toy[0] = new Toy(50, 30);
-
-  // Pet
   pet1 = new Pet(300, 300, 1, color(255), color(255), color(255));
 
   // Buttons
@@ -58,21 +60,32 @@ void setup() {
   btnEnd = new Button("End", 40, 540, 160, 50);
   btnRestart = new Button("Resume", 250, 540, 160, 50);
   btnMenu = new Button("Menu", 120, 340, 160, 50);
-  btnGameOver = new Button("Restart", 220, 430, 160, 50);
+  btnGameOver = new Button("Game Over", 320, 540, 160, 50);
 
   lastTime = millis();
 }
+
+
+// ============================================================
+// MAIN DRAW LOOP
+// ============================================================
 void draw() {
   background(255);
 
   switch (screen) {
   case 's': drawStart(); break;
-  case 'p': drawPlay();  break;
-  case 'e': drawEnd();   break;
-  case 'm': drawMenu();  break;
+  case 'p': drawPlay(); break;
+  case 'e': drawEnd(); break;
+  case 'm': drawMenu(); break;
   case 'g': drawGameOver(); break;
   }
 }
+
+
+// ============================================================
+// SCREENS
+// ============================================================
+
 void drawStart() {
   background(100, 100, 255);
   textFont(helv);
@@ -84,51 +97,58 @@ void drawStart() {
   btnStart.display();
   btnMenu.display();
 }
-void drawGameOver() {
-  rectMode(CENTER);
-  fill(0, 50, 0);
-  rect(width/2, height/2, 600, 600);
 
-  fill(0, 100, 0);
-  ellipse(width/2, height/2, 600, 500);
-  fill(0, 150, 0);
-  ellipse(width/2, height/2, 400, 300);
-
-  fill(0);
-  textAlign(CENTER, CENTER);
-  textSize(87);
-  text("GAME OVER", width/2, height/2 - 30);
-  text(":(", width/2, height*3/4 - 30);
-
-  fill(255, 255, 0);
-  text("GAME OVER", width/2 + 3, height/2);
-  text(":(", width/2 + 3, height*3/4);
-
-  btnGameOver.display();
-}
 void drawEnd() {
   background(100, 100, 255);
   btnEnd.display();
   btnRestart.display();
 }
+
 void drawMenu() {
   background(100, 100, 255);
   btnEnd.display();
   btnRestart.display();
 }
+
+void drawGameOver() {
+  fill(0, 50, 0);
+  rect(0, 0, 600, 600);
+
+  fill(0, 100, 0);
+  strokeWeight(0);
+  ellipse(width/2, height/2, 600, 500);
+  fill(0, 150, 0);
+  ellipse(width/2, height/2, 400, 300);
+
+  fill(0);
+  textSize(87);
+  text("GAME OVER", width/2, height/2 - 30);
+  text(":(", width/2, height*3/4 - 30);
+
+  fill(255, 255, 0);
+  text("GAME OVER", width/2 + 3, height/2 - 28);
+  text(":(", width/2 + 3, height*3/4 - 28);
+  btnRestart.display();
+}
+
+
+// ============================================================
+// GAMEPLAY SCREEN
+// ============================================================
 void drawPlay() {
 
   // Bottom bar
   fill(#627FD3);
   rect(0, 520, width, height);
 
-  // Timer → spawn waste every 60s
+  // Timer → spawn waste
   if (millis() - lastTime > interval) {
-    waste.add(new Waste(pet1.x - 50, pet1.y + 20));
+    Waste w = new Waste(pet1.x - 50, pet1.y + 20);
+    waste.add(w);
     lastTime = millis();
   }
 
-  // Waste drag + draw
+  // Display waste + drag logic
   for (int i = waste.size() - 1; i >= 0; i--) {
     Waste w = waste.get(i);
 
@@ -140,7 +160,7 @@ void drawPlay() {
 
     w.display();
 
-    // If touching trash can → delete
+    // Delete waste if touching trash can
     if (w.intersects()) {
       waste.remove(i);
     }
@@ -150,21 +170,22 @@ void drawPlay() {
   imageMode(CENTER);
   image(can, 250, 50);
 
-  // Bath
-  bath[0].display();
-  if (bath[0].hover(mouseX, mouseY)) bath[0].makeBubbles();
+  // Game objects
+  bath.display();
+  toy.display();
+  toy.bounce();
 
-  // Toy
-  toy[0].display();
-  //toy[0].bounce();
-
-  // Pet
   pet1.display();
   pet1.move(mouseX, mouseY);
 
-  // Pause button
   btnPause.display();
+  btnGameOver.display();
 }
+
+
+// ============================================================
+// INPUT HANDLING
+// ============================================================
 void mousePressed() {
 
   // Waste selection (topmost first)
@@ -175,7 +196,7 @@ void mousePressed() {
     }
   }
 
-  // Screen button logic
+  // Screen button handling
   switch (screen) {
 
   case 's':
@@ -185,6 +206,8 @@ void mousePressed() {
 
   case 'p':
     if (btnEnd.clicked()) screen = 'e';
+    
+    if (btnGameOver.clicked()) screen = 'g';
     break;
 
   case 'e':
@@ -198,7 +221,7 @@ void mousePressed() {
     break;
 
   case 'g':
-    if (btnGameOver.clicked()) screen = 's';
+    if (btnRestart.clicked()) screen = 'p';
     break;
   }
 }
@@ -208,7 +231,8 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-  // Dragable support
+  // Does NOT affect Waste system yet
+  // (kept for future Dragable support)
   for (Dragable d : dragables) {
     if (d.mouseOver()) {
       d.dragged = true;
