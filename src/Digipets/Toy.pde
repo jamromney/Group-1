@@ -22,7 +22,9 @@ class Toy {
     b = int(random(128, 255));
     
     catToy = loadImage("Toy1GUI.png");
+    catToy.resize(50, 40);
     dogToy = loadImage("Toy2GUI.png");
+    dogToy.resize(40, 25);
   }
 
   void display() {
