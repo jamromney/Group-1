@@ -1,14 +1,15 @@
 // Jake Romney
 class Meter {
   // Member Var
-  int mood, eat, clean;
+  int mood, eat, clean, sleep;
   char meterType; // h = happy, e = hunger, c = clean, m = mood
-  PImage happyI, middleM, sad, hungry, middleH, full, cleanI, middleC, dirty;
+  PImage happyI, middleM, sad, hungry, middleH, full, cleanI, middleC, dirty, sleepI, middleS, tired;
 
   // timer
-  int eatTimer = 0;   // store when the pet started eating
-  int cleanTimer = 0; // store when the pet started cleaning
-  int delayTime = 30000; // 30 seconds in milliseconds
+  int eatTimer = 0;
+  int cleanTimer = 0;
+  int delayTime = 30000;
+  int sleepTimer = 0;
 
 
   // Constructor
@@ -36,9 +37,17 @@ class Meter {
     dirty = loadImage("RCleanMoodGUI.png");
     dirty.resize(80, 80);
 
+    sleepI = loadImage("GSleepMoodGUI.png");
+    sleepI.resize(80, 80);
+    middleS = loadImage("OSleepMoodGUI.png");
+    middleS.resize(80, 80);
+    tired = loadImage("RSleepMoodGUI.png");
+    tired.resize(80, 80);
+
     mood = 1;
     eat = 1;
     clean = 1;
+    sleep = 1;
   }
   // Member Methods
   void display() {
@@ -46,7 +55,7 @@ class Meter {
     // Happiness Meter
     //================
     if (meterType == 'h') {
-      if (mood >= 3) {
+      if (mood >= 4) {
         image(happyI, 340, 50);
       } else if (mood >= 2) {
         image(middleM, 340, 50);
@@ -72,12 +81,24 @@ class Meter {
     // Clean Meter
     //================
     if (meterType == 'c') {
-      if (clean >= 3) {
+      if (clean >= 4) {
         image(cleanI, 500, 50);
       } else if (clean >= 2) {
         image(middleC, 500, 50);
       } else {
         image(dirty, 500, 50);
+      }
+    }
+    //================
+    // Sleep Meter
+    //================
+    if (meterType == 's') {
+      if (sleep >= 3) {
+        //image();
+      } else if (sleep >= 2) {
+        //image();
+      } else {
+        //image();
       }
     }
   }
@@ -118,6 +139,7 @@ class Meter {
     if (pet1.x < food.x + food.bowl.width &&pet1.x + pet1.w > food.x &&pet1.y < food.y + food.bowl.height &&pet1.y + pet1.h > food.y) {
       if (eatTimer == 0) {
         eatTimer = millis(); // start the timer
+        println("Timer Started:", eatTimer);
       }
       if (millis() - eatTimer >= delayTime) {
         eat += 1;
@@ -127,6 +149,23 @@ class Meter {
       }
     } else {
       eatTimer = 0; // pet moved away, reset timer
+    }
+  }
+
+  void sleepChange() {
+    if (pet1.x < bed.x + bed.w && pet1.x + pet1.w > bed.x && pet1.y < bed.y + bed.h && pet1.y + pet1.h > bed.y) {
+
+      if (sleepTimer == 0) 
+      sleepTimer = millis();
+      println("Timer Started:",sleepTimer);
+
+      if (millis() - sleepTimer >= delayTime) {
+        sleep = constrain(sleep + 1, 0, 3);
+        println("Sleep increased: " + sleep);
+        sleepTimer = millis();
+      }
+    } else {
+      sleepTimer = 0; // pet moved away
     }
   }
 }
