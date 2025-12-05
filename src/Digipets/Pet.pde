@@ -28,7 +28,7 @@ class Pet {
     gfood.resize(30, 30);
     gmood = loadImage("GMoodMoodGUI.png");
     gmood.resize(30, 30);
-p2 = loadImage("dog (1).png)
+    p2 = loadImage("dog (1).png")
     p2.resize(60, 90);    
 over = false;
   }
