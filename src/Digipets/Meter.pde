@@ -5,6 +5,12 @@ class Meter {
   char meterType; // h = happy, e = hunger, c = clean, m = mood
   PImage happyI, middleM, sad, hungry, middleH, full, cleanI, middleC, dirty;
 
+  // timer
+  int eatTimer = 0;   // store when the pet started eating
+  int cleanTimer = 0; // store when the pet started cleaning
+  int delayTime = 30000; // 30 seconds in milliseconds
+
+
   // Constructor
   Meter(char meterType) {
     this.meterType = meterType;
@@ -79,10 +85,22 @@ class Meter {
     if (waste.size() >= 3) {
       clean = 1;
       println("Too much waste");
-    } else if (pet1.x < bath.x + bath.w &&pet1.x + pet1.w > bath.x &&pet1.y < bath.y + bath.h &&pet1.y + pet1.h > bath.y) {
-      clean += 1;
-      println("Cleaning");
-      println(clean);
+    } else if (pet1.x < bath.x + bath.w && pet1.x + pet1.w > bath.x &&
+      pet1.y < bath.y + bath.h && pet1.y + pet1.h > bath.y) {
+
+      if (cleanTimer == 0) {
+        cleanTimer = millis(); // start the timer
+        println(cleanTimer);
+      }
+
+      if (millis() - cleanTimer >= delayTime) {
+        clean += 1;
+        clean = constrain(clean, 0, 4);
+        println("Cleaning: " + clean);
+        cleanTimer = millis(); // reset timer
+      }
+    } else {
+      cleanTimer = 0; // pet moved away, reset timer
     }
   }
 
@@ -98,9 +116,17 @@ class Meter {
 
   void eatChange() {
     if (pet1.x < food.x + food.bowl.width &&pet1.x + pet1.w > food.x &&pet1.y < food.y + food.bowl.height &&pet1.y + pet1.h > food.y) {
-      eat += 1;
-      println("eat increasing");
-      println(eat);
+      if (eatTimer == 0) {
+        eatTimer = millis(); // start the timer
+      }
+      if (millis() - eatTimer >= delayTime) {
+        eat += 1;
+        eat = constrain(eat, 0, 4);
+        println("Eat increased: " + eat);
+        eatTimer = millis(); // reset timer for next increment
+      }
+    } else {
+      eatTimer = 0; // pet moved away, reset timer
     }
   }
 }
