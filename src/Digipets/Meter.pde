@@ -30,56 +30,77 @@ class Meter {
     dirty = loadImage("RCleanMoodGUI.png");
     dirty.resize(80, 80);
 
-    mood = 4;
-    eat = 4;
-    clean = 4;
+    mood = 1;
+    eat = 1;
+    clean = 1;
   }
   // Member Methods
   void display() {
     //================
-    // Happyness Meter
+    // Happiness Meter
     //================
-    if (meterType == 'h' && mood > 2) {
-      // Display Image
-      image(happyI, 340, 50);
-    } else if (meterType == 'h' && mood > 1) {
-      // Display less happy image
-      image(middleM, 340, 50);
-    } else if (meterType == 'h' && mood > 1) {
-      // Display Image
-      image(sad, 340, 50);
+    if (meterType == 'h') {
+      if (mood >= 4) {
+        image(happyI, 340, 50);
+      } else if (mood >= 2) {
+        image(middleM, 340, 50);
+      } else {
+        image(sad, 340, 50);
+      }
     }
+
     //================
     // Hunger Meter
     //================
-    if (meterType == 'e' && eat > 3) {
-      // Display Image
-      image(full, 420, 50);
-    } else if (meterType == 'e' && eat > 2) {
-      // Display Image
-      image(middleH, 420, 50);
-    } else if (meterType == 'e' && eat > 1) {
-      // Display Image
-      image(hungry, 420, 50);
+    if (meterType == 'e') {
+      if (eat >= 4) {
+        image(full, 420, 50);
+      } else if (eat >= 2) {
+        image(middleH, 420, 50);
+      } else {
+        image(hungry, 420, 50);
+      }
     }
+
     //================
-    // Clean
+    // Clean Meter
     //================
-    if (meterType == 'c' && clean > 3) {
-      // Display Image
-      image(cleanI, 500, 50);
-    } else if (meterType == 'c' && clean > 2) {
-      // Display Image
-      image(middleC, 500, 50);
-    } else if (meterType == 'c' && clean > 1) {
-      // Display Image
-      image(dirty, 500, 50);
+    if (meterType == 'c') {
+      if (clean >= 4) {
+        image(cleanI, 500, 50);
+      } else if (clean >= 2) {
+        image(middleC, 500, 50);
+      } else {
+        image(dirty, 500, 50);
+      }
+    }
+  }
+  void cleanChange() {
+    if (waste.size() >= 3) {
+      clean = 1;
+      println("Too much waste");
+    } else if (pet1.x < bath.x + bath.w &&pet1.x + pet1.w > bath.x &&pet1.y < bath.y + bath.h &&pet1.y + pet1.h > bath.y) {
+      clean += 1;
+      println("Cleaning");
+      println(clean);
     }
   }
 
-  void cleanChange() {
-    if (waste.size() > 2) {
-      clean = 2;
+  void moodChange() {
+    if (clean >= 4 && eat >= 4) {
+      mood = 4;  // very happy
+    } else if (clean >= 2 && eat >= 2) {
+      mood = 2;  // okay
+    } else {
+      mood = 1;  // unhappy
+    }
+  }
+
+  void eatChange() {
+    if (pet1.x < food.x + food.bowl.width &&pet1.x + pet1.w > food.x &&pet1.y < food.y + food.bowl.height &&pet1.y + pet1.h > food.y) {
+      eat += 1;
+      println("eat increasing");
+      println(eat);
     }
   }
 }
