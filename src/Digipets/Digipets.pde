@@ -16,10 +16,11 @@ int createDragable() {
 
 // Game Objects
 Bath bath;
-Bed bed;         // <-- Add Bed here
+Bed bed;         // Keep Bed
 Toy toy;
 Pet pet1;
-Meter mood, eat, clean;
+Meter mood, clean, eat;
+Food food;       // Keep Food
 
 // Screens
 char screen = 's';   // s = Start, p = Play, e = End, m = Menu, g = Game Over
@@ -55,7 +56,7 @@ void setup() {
 
   // Game Objects
   bath = new Bath(150, 30, 15, 15, #29A7D3, #29A7D3, #29A7D3);
-  bed  = new Bed(300, 30, 15, 15);       // <-- Initialize Bed
+  bed  = new Bed(300, 30, 15, 15);       // Initialize Bed
   toy  = new Toy(50, 30);
   pet1 = new Pet(300, 300, 1, color(255), color(255), color(255));
 
@@ -63,6 +64,9 @@ void setup() {
   mood = new Meter('h');
   eat  = new Meter('e');
   clean = new Meter('c');
+
+  // Food
+  food = new Food(100, 200);
 
   // Buttons - Jake Romney / Claire Danzig
   btnStart = new Button("start", 230, 280, 160, 50);
@@ -192,6 +196,9 @@ void drawPlay() {
   // Toy
   toy.display();
 
+  // Food
+  food.display();
+
   // Meters
   mood.display();
   eat.display();
@@ -200,6 +207,19 @@ void drawPlay() {
   // Pet
   pet1.display();
   pet1.move(mouseX, mouseY);
+
+  // Meter Updates (including delayed eat/clean)
+  mood.moodChange();
+  mood.cleanChange();
+  mood.eatChange();
+
+  clean.moodChange();
+  clean.cleanChange();
+  clean.eatChange();
+
+  eat.moodChange();
+  eat.cleanChange();
+  eat.eatChange();
 
   // Buttons
   btnPause.display();
