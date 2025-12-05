@@ -33,7 +33,7 @@ int interval = 60000;
 int lastTime = 0;
 
 // Graphics
-PImage can, gameBackground;
+PImage can, gameBackground, logo;
 PFont helv;
 
 
