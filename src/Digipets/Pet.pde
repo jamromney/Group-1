@@ -5,7 +5,8 @@ class Pet {
   color c1, c2, c3;
   boolean over;
   PImage p1, gsleep, gclean, gfood, gmood;
-
+  PImage p2;
+  boolean tempPetState = false;
 
   // Constructer
   Pet(int x, int y, int mood, color c1, color c2, color c3) {
@@ -27,14 +28,16 @@ class Pet {
     gfood.resize(30, 30);
     gmood = loadImage("GMoodMoodGUI.png");
     gmood.resize(30, 30);
-    over = false;
+p2 = loadImage("dog (1).png)
+    p2.resize(60, 90);    
+over = false;
   }
   void display() {
     image(p1, x, y);
     image(gsleep, x-65, y-90);
     image(gclean, x-25, y-90);
     image(gfood, x+15, y-90);
-    image(gmood, x+55, y-90);
+    image(gmood, x+55, y-90)
   }
   void mood () {
     if (sleepTime >= 60 && sleepTime < 120) {
