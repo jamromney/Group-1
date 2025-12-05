@@ -31,18 +31,33 @@ class Button {
     } else {
       fill(255);
     }
-    stroke(0);
-    rect(x, y, w, h, 10);
+    stroke(0); //Claire Danzig
+    //rect(x, y, w, h, 10);
 
     fill(0);
     textAlign(CENTER, CENTER);
     textSize(16);
-    text(label, x + w/2, y + h/2);
+    //text(label, x + w/2, y + h/2);
+
+    if(label.equals("start")){
+     image(b1, x + w/2, y + h/2);
+    } else if(label.equals("pause")){
+     image(b2, x + w/2, y + h/2);
+    } else if(label.equals("end")){
+     image(b3, x + w/2, y + h/2);
+    } else if(label.equals("resume")){
+     image(b4, x + w/2, y + h/2);
+    } else if(label.equals("settings")){
+     image(b5, x + w/2, y + h/2);
+    } else if(label.equals("gameOver")){
+     image(b6, x + w/2, y + h/2);
+    }
   }
 
   boolean clicked() {
     return (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h);
   }
 }
+
 
 
