@@ -37,7 +37,7 @@ over = false;
     image(gsleep, x-65, y-90);
     image(gclean, x-25, y-90);
     image(gfood, x+15, y-90);
-    image(gmood, x+55, y-90)
+    image(gmood, x+55, y-90);
   }
   void mood () {
     if (sleepTime >= 60 && sleepTime < 120) {
