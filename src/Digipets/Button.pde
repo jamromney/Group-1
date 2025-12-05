@@ -8,6 +8,20 @@ class Button {
     this.y = y;
     this.w = w;
     this.h = h;
+
+ if(label.equals("start")){
+     b1 = loadImage("StartButtonGUI.png");
+    } else if(label.equals("pause")){
+     b1 = loadImage("PauseButtonGUI.png");
+    } else if(label.equals("end")){
+     b1 = loadImage("EndButtonGUI.png");
+    } else if(label.equals("resume")){
+     b1 = loadImage("ResumeButtonGUI.png");
+    } else if(label.equals("settings")){
+     b1 = loadImage("SettingsButtonGUI.png");
+    } else if(label.equals("gameOver")){
+     b1 = loadImage("GameOverButtonGUI.png");
+    }
   }
 
   void display() {
@@ -29,3 +43,4 @@ class Button {
     return (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h);
   }
 }
+
