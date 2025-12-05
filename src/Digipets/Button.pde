@@ -12,16 +12,22 @@ class Button {
 
  if(label.equals("start")){
      b1 = loadImage("StartButtonGUI.png");
+     b1.resize(175,55);
     } else if(label.equals("pause")){
      b2 = loadImage("PauseButtonGUI.png");
+     b2.resize(175,55);
     } else if(label.equals("end")){
      b3 = loadImage("EndButtonGUI.png");
+     b3.resize(115,55);
     } else if(label.equals("resume")){
      b4 = loadImage("ResumeButtonGUI.png");
+     b4.resize(200,55);
     } else if(label.equals("settings")){
      b5 = loadImage("SettingsButtonGUI.png");
+     b5.resize(265,55);
     } else if(label.equals("gameOver")){
      b6 = loadImage("GameOverButtonGUI.png");
+     b6.resize(285,55);
     }
   }
 
@@ -58,6 +64,7 @@ class Button {
     return (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h);
   }
 }
+
 
 
 
