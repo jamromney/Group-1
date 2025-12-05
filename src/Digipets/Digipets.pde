@@ -46,6 +46,7 @@ void setup() {
   helv = createFont("Helvetica-Bold", 90);
 
   // Images
+  imageMode(CENTER);
   can = loadImage("garbageCan.png");
   can.resize(80, 80);
 
@@ -63,7 +64,7 @@ void setup() {
   eat  = new Meter('e');
   clean = new Meter('c');
 
-  // Buttons
+  // Buttons - Jake Romney / Claire Danzig
   btnStart = new Button("start", 230, 280, 160, 50);
   btnPause = new Button("pause", 40, 540, 160, 50);
   btnEnd = new Button("end", 40, 540, 160, 50);
