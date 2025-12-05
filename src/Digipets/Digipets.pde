@@ -50,6 +50,8 @@ void setup() {
   imageMode(CENTER);
   can = loadImage("garbageCan.png");
   can.resize(80, 80);
+  logo = loadImage("DigipetsLogoGUI.png");
+  logo.resize(500, 172);
 
   gameBackground = loadImage("MainGameBGGUI.png");
   gameBackground.resize(600, 600);
@@ -104,8 +106,9 @@ void drawStart() {
   textFont(helv);
   fill(230);
   textAlign(CENTER);
-  textSize(80);
-  text("Digipets", width/2, 180);
+  //textSize(80);
+  //text("Digipets", width/2, 180);
+  image(logo, width/2, 180);
 
   btnStart.display();
   btnMenu.display();
