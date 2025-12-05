@@ -1,6 +1,7 @@
 class Button {
   String label;
   float x, y, w, h;
+  PImage b1, b2, b3, b4, b5, b6;
 
   Button(String label, float x, float y, float w, float h) {
     this.label = label;
@@ -12,15 +13,15 @@ class Button {
  if(label.equals("start")){
      b1 = loadImage("StartButtonGUI.png");
     } else if(label.equals("pause")){
-     b1 = loadImage("PauseButtonGUI.png");
+     b2 = loadImage("PauseButtonGUI.png");
     } else if(label.equals("end")){
-     b1 = loadImage("EndButtonGUI.png");
+     b3 = loadImage("EndButtonGUI.png");
     } else if(label.equals("resume")){
-     b1 = loadImage("ResumeButtonGUI.png");
+     b4 = loadImage("ResumeButtonGUI.png");
     } else if(label.equals("settings")){
-     b1 = loadImage("SettingsButtonGUI.png");
+     b5 = loadImage("SettingsButtonGUI.png");
     } else if(label.equals("gameOver")){
-     b1 = loadImage("GameOverButtonGUI.png");
+     b6 = loadImage("GameOverButtonGUI.png");
     }
   }
 
@@ -43,4 +44,5 @@ class Button {
     return (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h);
   }
 }
+
 
