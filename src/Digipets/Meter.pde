@@ -46,7 +46,7 @@ class Meter {
     // Happiness Meter
     //================
     if (meterType == 'h') {
-      if (mood >= 4) {
+      if (mood >= 3) {
         image(happyI, 340, 50);
       } else if (mood >= 2) {
         image(middleM, 340, 50);
@@ -59,7 +59,7 @@ class Meter {
     // Hunger Meter
     //================
     if (meterType == 'e') {
-      if (eat >= 4) {
+      if (eat >= 3) {
         image(full, 420, 50);
       } else if (eat >= 2) {
         image(middleH, 420, 50);
@@ -72,7 +72,7 @@ class Meter {
     // Clean Meter
     //================
     if (meterType == 'c') {
-      if (clean >= 4) {
+      if (clean >= 3) {
         image(cleanI, 500, 50);
       } else if (clean >= 2) {
         image(middleC, 500, 50);
