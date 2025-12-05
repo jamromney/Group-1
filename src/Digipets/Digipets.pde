@@ -64,12 +64,12 @@ void setup() {
   clean = new Meter('c');
 
   // Buttons
-  btnStart    = new Button("Play!", loadImage("StartButtonGUI.png"));
-  btnPause    = new Button("Pause", 40, 540, 160, 50);
-  btnEnd      = new Button("End", 40, 540, 160, 50);
-  btnRestart  = new Button("Resume", 250, 540, 160, 50);
-  btnMenu     = new Button("Menu", 120, 340, 160, 50);
-  btnGameOver = new Button("Game Over", 320, 540, 160, 50);
+  btnStart = new Button("start", 230, 280, 160, 50);
+  btnPause = new Button("pause", 40, 540, 160, 50);
+  btnEnd = new Button("end", 40, 540, 160, 50);
+  btnRestart = new Button("resume", 250, 540, 160, 50);
+  btnMenu = new Button("settings", 120, 340, 160, 50);
+  btnGameOver = new Button("gameOver", 320, 540, 160, 50);
 
   lastTime = millis();
 }
