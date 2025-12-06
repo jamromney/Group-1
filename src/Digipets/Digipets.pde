@@ -43,6 +43,7 @@ PFont helv;
 void setup() {
   size(600, 600);
   frameRate(60);
+  pixelDensity(1);
 
   helv = createFont("Helvetica-Bold", 90);
 
