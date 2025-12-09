@@ -18,7 +18,7 @@ class Bath {
   }
 
   void display() {
-    image(bath, x, y);
+    image(bath, 475, 175);
 
     for (int i = bubbles.size()-1; i >= 0; i--) {
       Bubble b = bubbles.get(i);
