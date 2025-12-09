@@ -13,9 +13,8 @@ class Bath {
     bath = loadImage("BathGUI.png");
     bath.resize(220, 120);
 
-    // YOU MUST UPDATE THESE BASED ON NEW CLICK MEASUREMENTS:
-    waterOffsetX = 10;   // example values
-    waterOffsetY = -30;   // example values
+    waterOffsetX = 10;  
+    waterOffsetY = -30;  
   }
 
   void display() {
@@ -41,8 +40,8 @@ class Bath {
   }
 
   boolean hover(int mx, int my) {
-int padding = 10;         // keep extra hover area
-  int shiftLeft = -10;        // adjust this value to match tub position
+int padding = 10;         
+  int shiftLeft = -10;      
 
   return mx > x + shiftLeft - padding &&
          mx < x + bath.width + shiftLeft + padding &&
