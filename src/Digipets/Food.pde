@@ -12,6 +12,7 @@ class Food {
   // Member Methods
   void display() {
     fill(100,100,100);
-    image(bowl, x,y);
+    image(bowl, 200,250);
   }
 }
+
