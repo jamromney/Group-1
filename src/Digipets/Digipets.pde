@@ -58,7 +58,7 @@ void setup() {
   gameBackground.resize(600, 600);
 
   // Game Objects
-  bath = new Bath(150, 30, 15, 15, #29A7D3, #29A7D3, #29A7D3);
+  bath = new Bath(150, 30, 15, 15);
   bed  = new Bed(300, 30, 15, 15);       // Initialize Bed
   toy  = new Toy(50, 30);
   pet1 = new Pet(300, 300, 1, color(255), color(255), color(255));
