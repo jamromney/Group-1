@@ -13,11 +13,11 @@ class Bed {
     zlist = new ArrayList<Zzz>();
 
     bed = loadImage("BedGUI.png");
-    bed.resize(200, 200);
+    bed.resize(175, 105);
   }
 
   void display() {
-    image(bed, x, y);
+    image(bed, 100, 200);
 
     // draw bubbles
     for (int i = zlist.size()-1; i >= 0; i--) {
