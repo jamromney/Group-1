@@ -59,7 +59,7 @@ void setup() {
 
   // Game Objects
   bath = new Bath(450, 200, 15, 15);
-  bed  = new Bed(130, 400, 15, 15);       // Initialize Bed
+  bed  = new Bed(130, 400, 220, 120);       // Initialize Bed
   toy  = new Toy(50, 30);
   pet1 = new Pet(300, 300, 1, color(255), color(255), color(255));
 
